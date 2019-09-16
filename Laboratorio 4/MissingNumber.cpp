@@ -1,45 +1,49 @@
 #include <bits/stdc++.h>
+#include <iostream>
+#include <string>
 using namespace std;
 
-void swap(int*, int, int);
+void quickSort(int*, int, int);
 int partition(int*, int, int);
 
 int main(void){
-    int n;
-    cout << "Size: "; cin >> n;
-    int *A = new int[n];
-    for(int i  = 0; i < n; i++){
-        cout << "Data: "; cin >> A[i];
-    }
-    swap(A, 0, n - 1, "main");
-    cout << "Sorted" << highl;
-    for(int i  = 0; i < n; i++){
-        cout << "Data: "<<  A[i] << highl;
-    }
-
-}
-
-void swap(int *A, int low, int high, string side){
-    if(low < high){
-        int part = partition(A, low, high);
-        swap(A, low, part - 1);
-        swap(A, part + 1, high);
+    int T, N;
+    cin >> T;
+    int *A = new int[N];
+    for(int tests = 0; tests < T; tests++){
+        cin >> N;
+        for(int i = 0; i < N; i++)
+            cin >> A[i];
+        quickSort(A, 0, N - 1);
+        if(A[N - 1] % 2 != 0)
+            cout << A[N - 1] + 1 << endl;
+        else
+            cout << A[N - 1] + 2 << endl;
     }
 }
 
-int partition(int *A, int low, int high){
-    int pivot = *(A + high);
-    int i = low - 1, temp = 0;
-    for(int j = low; j < high; j++){
-        if(*(A + j) < pivot){
+void quickSort(int *A, int start, int end){
+    if(start < end){
+        int part = partition(A, start, end);
+        quickSort(A, start, part - 1);
+        quickSort(A, part + 1, end);
+    }
+}
+
+int partition(int *A, int start, int end){
+    int x = *(A + end);
+    int i = start - 1, temp = 0;
+    for(int j = start; j < end; j++){
+        if(*(A + j) < x){
             i++;
             temp = *(A + i);
             *(A + i) = *(A + j);
             *(A + j) = temp;
         }
     }
+
     temp = *(A + i + 1);
-    *(A + i + 1) = *(A + high);
-    *(A + high) = temp;
+    *(A + i + 1) = *(A + end);
+    *(A + end) = temp;
     return i + 1;
 }
