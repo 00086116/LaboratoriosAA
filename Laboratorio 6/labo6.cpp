@@ -2,6 +2,16 @@
 
 using namespace std;
 
+int e1 = 9, e2 = 5, x1 =4, x2 = 8;
+int a1[]= {2,4,6,8,10,12};
+int a2[]= {1,3,5,7,9,11};
+int t1[]= {1,2,9,8,7};
+int t2[]= {1,4,2,1,9};
+int const n = sizeof(a1)/sizeof(*a1);
+int f1[n], f2[n];
+
+
+
 void fastest_way(){
     f1[0] = e1 + a1[0];
     f2[0] = e2 + a2[0];
